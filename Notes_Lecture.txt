@@ -1,0 +1,157 @@
+PROPS :
+
+
+import React from "react";
+
+const Animals = (props) => {
+    return(
+        <>
+            <h1>This is a {props.animal}</h1>
+        </>
+    );
+}
+
+export default Animals;
+
+
+
+import React, { Component } from "react";
+
+class Form extends Component{
+    render(){
+            const {name, company} = this.props
+        return(
+            <>
+                <h1>Hello,My name is {name}</h1>
+                <h1>I am working at {company}</h1>
+            </>
+        );
+    }
+}
+
+export default Form;
+
+Analogy: Building a Robot
+
+Imagine You Have a Robot Kit:
+
+Tell the kid to imagine they have a kit to build a robot.
+The kit comes with all the parts they need, like arms, legs, a head, and so on.
+Instructions for Building the Robot:
+
+The kit also includes a set of instructions on how to put all these parts together to make a robot.
+The Constructor is Like the Instructions:
+
+In programming, a constructor is like those instructions.
+When you want to create (or "construct") a new object (like a robot), the constructor tells the computer how to put everything together.
+
+super() is the constructor of the parent class.
+
+
+STATES :
+
+import React, { Component } from "react";
+
+
+class States extends Component{
+    constructor(){
+    super()
+            this.state={
+                car : "Ferrari"
+            }
+    };
+
+    changeMessage(){
+        this.setState ({
+            car : "Porche"
+        })
+    };
+
+    render(){
+
+        return(
+            <>
+                <h1>I have a {this.state.car}</h1>
+                <button onClick={() => this.changeMessage()}>Change</button>
+            </>
+        );
+    }
+}
+
+export default States;
+
+
+
+Hooks :
+
+
+how to import 
+
+import React, { useState } from "react";
+
+function Example(){
+    const [Bike, setBike] = useState("");
+
+    return(
+        <>
+        <h1>I love {Bike} in my garage !</h1>
+        <button onClick={() => setBike("Yamaha")}> Yamaha </button>
+        <button onClick={() => setBike("Ducati")}> Ducati </button>
+        <button onClick={() => setBike("Kawasaki")}> Kawasaki </button>
+        <button onClick={() => setBike("BMW")}> BMW </button>
+        </>
+    );
+
+}
+
+export default Example; 
+
+import React, { useState } from "react";
+
+function Example(){
+    const [number1, setNumber1] = useState();
+    const [number2, setNumber2] = useState();
+
+    const enter = () => {
+        const num1 = parseInt(prompt("Enter number 1 : "));
+        setNumber1(num1);
+        const num2 = parseInt(prompt("Enter number 2 : "));
+        setNumber2(num2);
+    }
+
+    const add = () => {
+        const addition = number1 + number2;
+        window.alert(addition);
+    }
+    const sub = () => {
+        const substraction = number1 + number2;
+        console.log(substraction);
+    }
+    const mult = () => {
+        const multiplication = number1 + number2;
+        console.log(multiplication);
+    }
+    const divi = () => {
+        const division = number1 + number2;
+        console.log(division);
+    }
+
+    return(
+        <>
+            <div>
+                <button onClick={enter}>Enter the number</button><br></br>
+                <button onClick={add}>ADD THE NUMBERS</button><br></br>
+                <button onClick={sub}>SUBSTRACT THE NUMBERS</button><br></br>
+                <button onClick={mult}>MULTIPLY THE NUMBERS</button><br></br>
+                <button onClick={divi}>DIVIDE THE NUMBERS</button><br></br>
+            </div>
+        </>
+    );
+
+}
+
+export default Example; 
+
+
+useEffect with Sync Async Await as it fetches the data from the API.
+
