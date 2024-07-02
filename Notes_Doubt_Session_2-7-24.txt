@@ -1,0 +1,147 @@
+Sync Functions:
+Lets say that we have to fetch an API, it might take some time right ?
+so if we use a sync function, it won't wait for the fetching to be completed.
+it will straight away just run till the end without pausing.
+
+Without await: You might run around the house, doing other things, and check the pizza only when you remember.
+
+With await: You just wait right there until the pizza is ready, and then you get it.
+
+
+import React, { useState } from "react";
+
+function Sync(){
+    
+    const [syncmessage, setSyncmessage] = useState("")
+
+    const handlesync = () =>{
+        setSyncmessage("Synchrnous Function Exected !!")
+        console.log(syncmessage)    
+    }
+    
+    return(
+        <>
+            <h1>Sync Function in React :</h1>
+            <button onClick={handlesync}>Run SYNC Function</button>
+        </> 
+    );
+}
+
+export default Sync;
+
+
+
+import React, { useState, useEffect } from 'react';
+
+function SimpleFetchExample() {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Define an async function to fetch data
+        const fetchData = async () => {
+            // Use await to wait for the fetch call to complete
+            const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+            // Use await to wait for the response to be converted to JSON
+            const result = await response.json();
+            // Update the state with the fetched data
+            setData(result);
+            // Indicate that loading is complete
+            setLoading(false);
+        };
+
+        // Call the async function
+        fetchData();
+    }, []); // Empty dependency array means this effect runs only once when the component mounts
+
+    return (
+        <div>
+            <h1>Fetched Data</h1>
+            {data && (
+                <div>
+                    <p>ID: {data.id}</p>
+                    <p>Title: {data.title}</p>
+                </div>
+            )}
+        </div>
+    );
+}
+
+export default SimpleFetchExample;
+
+
+//BEST_EXAMPLE
+
+
+
+import React, { useEffect, useState } from 'react';
+
+function Asyncc() {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(()=>{
+        async function fetchd(){
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon/3')
+        const result =  await response.json()
+        setData(result)
+        setLoading(false)
+        }
+
+        fetchd();
+    }, [])
+
+
+    return (
+        <>
+            <div>
+                <h1>{data.name}</h1>
+                <img src={data.sprites.front_default}></img>
+            </div>
+        </>
+    );
+}
+
+export default Asyncc;
+
+
+import React, { useEffect, useState } from "react";
+
+function Async(){
+
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+
+    useEffect(()=>{
+        async function fetchdata(){
+            const resp = await fetch('https://rickandmortyapi.com/api/character');
+            const result = await resp.json();
+            setData(result);
+            setLoading(false);
+        }
+
+        fetchdata();
+    }, [])
+
+    if (loading) {
+        return <div>Loading...</div>;  
+    }
+
+    return(
+        <>
+            <div>
+                <h1>Character :</h1>
+                <ul>{data.results.map((charac, index)=>(
+                    <li key={index}>
+                        <div>{charac.id}. {charac.name}</div>
+                    </li>
+                ))}</ul>
+            </div>
+        </>
+    );
+}
+
+export default Async;
+
+
